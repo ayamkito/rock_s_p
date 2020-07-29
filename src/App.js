@@ -51,17 +51,17 @@ class Game extends Component{
 
   render(){
     return(
-      <div className="syle" >
-        <div>
+      <div className="style" >
+        <div className = "cards">
           <PlayerCard sign={this.state.playerOne}/>
           <PlayerCard sign={this.state.playerTwo}/> 
         </div>
         <div className="winner">{this.decideWinner()}</div>
-        <button type="button" onClick={this.playGame}>Play</button>
+        <button type="button" onClick={this.playGame}>Random Play</button>
         <div className="choose">
-          <button type="button" onClick={this.manualPaper}>Paper</button>
-          <button type="button" onClick={this.manualRock}>Rock</button>
-          <button type="button" onClick={this.manualScissors}>Scissors</button>
+          <button type="button" onClick={this.manualPaper}>Player One: Paper</button>
+          <button type="button" onClick={this.manualRock}>Player One: Rock</button>
+          <button type="button" onClick={this.manualScissors}>Player One: Scissors</button>
         </div>
       </div>
     )

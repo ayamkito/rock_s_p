@@ -7,11 +7,11 @@ const PlayerCard = (props)=>{
     let image = ""
 
     if(sign==="rock"){
-        image=paper;
+        image=rock;
     }else if(sign==="paper"){
-        image = scissors;
+        image = paper;
     }else{
-        image = rock
+        image = scissors
     }
     return (
         <div className="playerCard">
