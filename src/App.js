@@ -1,26 +1,70 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import PlayerCard from "./PlayerCard";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class Game extends Component{
+  constructor(){
+    super();
+    this.signs =["rock","scissors","paper"]
+    this.state = {
+      playerOne: "rock",
+      playerTwo: "scissors"
+    }
+  }
+  playGame=()=>{
+    this.setState({
+      playerOne: this.signs[Math.floor(Math.random()*3)],
+      playerTwo: this.signs[Math.floor(Math.random()*3)]
+    })
+  }
+  manualPaper =()=>{
+    this.setState({
+      playerOne: "paper",
+      playerTwo: this.signs[Math.floor(Math.random()*3)]
+    })
+  }
+  manualScissors=()=>{
+    this.setState({
+      playerOne:"scissors",
+      playerTwo: this.signs[Math.floor(Math.random()*3)]
+    })
+  }
+  manualRock=()=>{
+    this.setState({
+      playerOne:"rock",
+      playerTwo: this.signs[Math.floor(Math.random()*3)]
+    })
+  }
+  decideWinner = ()=>{
+    const playerOne = this.state.playerOne
+    const playerTwo = this.state.playerTwo
+    if(playerOne===playerTwo){
+      return "it's a tie!"
+    }else if((playerOne==="rock"&& playerTwo==="scissors")||(playerOne === "paper"&&playerTwo==="rock")||(playerOne==="scissors"&&playerTwo==="paper")){
+      return "Jesse Won!"
+    }else{
+      return "Kirk Won!"
+    }
+  }
+
+
+
+
+  render(){
+    return(
+      <div className="syle" >
+        <div>
+          <PlayerCard sign={this.state.playerOne}/>
+          <PlayerCard sign={this.state.playerTwo}/> 
+        </div>
+        <div className="winner">{this.decideWinner()}</div>
+        <button type="button" onClick={this.playGame}>Play</button>
+        <div className="choose">
+          <button type="button" onClick={this.manualPaper}>Paper</button>
+          <button type="button" onClick={this.manualRock}>Rock</button>
+          <button type="button" onClick={this.manualScissors}>Scissors</button>
+        </div>
+      </div>
+    )
+  }
 }
-
-export default App;
+export default Game;
